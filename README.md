@@ -63,7 +63,7 @@ docker compose -f docker-compose.local.yml up --build
 
 | Secret | Valor |
 |---|---|
-| `DOCKERHUB_USERNAME` | Usuario de Docker Hub |
+| `DOCKERHUB_USERNAME` | *Opcional* (por defecto `noch1`, definido en el workflow) |
 | `DOCKERHUB_TOKEN` | Access Token de Docker Hub (Account Settings → Personal access tokens) |
 | `EC2_HOST` | IP pública o DNS de la instancia |
 | `EC2_USER` | `ec2-user` |
