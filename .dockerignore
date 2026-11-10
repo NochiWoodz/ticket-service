@@ -1,0 +1,10 @@
+target/
+efs-local/
+.git/
+.github/
+.idea/
+.vscode/
+*.iml
+postman/
+deploy/
+docs/

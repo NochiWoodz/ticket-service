@@ -1,0 +1,7 @@
+target/
+efs-local/
+.idea/
+.vscode/
+*.iml
+.env
+*.pem

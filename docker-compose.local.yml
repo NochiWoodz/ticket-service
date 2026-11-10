@@ -1,0 +1,31 @@
+# Ejecucion LOCAL sin cuenta AWS: LocalStack simula S3 y una carpeta local simula el EFS.
+#   mvn -B package -DskipTests   (opcional, el Dockerfile compila)
+#   docker compose -f docker-compose.local.yml up --build
+services:
+  localstack:
+    image: localstack/localstack:3.8
+    environment:
+      - SERVICES=s3
+    ports:
+      - "4566:4566"
+    volumes:
+      - ./deploy/localstack-init.sh:/etc/localstack/init/ready.d/init.sh
+
+  ticket-service:
+    build: .
+    depends_on:
+      - localstack
+    ports:
+      - "8080:8080"
+    environment:
+      - S3_BUCKET=tickets-eventos-bucket
+      - S3_ENDPOINT=http://localstack:4566
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - EFS_BASE_PATH=/data/efs
+    volumes:
+      - efs-simulado:/data/efs
+
+volumes:
+  efs-simulado:
